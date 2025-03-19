@@ -123,5 +123,16 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
-    fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+    console.log("DOM fully loaded");
+
+    console.log("window.fncSlider:", window.fncSlider); // 確認用
+    var slider = document.querySelector(".example-slider");
+    console.log("Slider element:", slider); // スライダーが存在するか確認
+
+    if (typeof fncSlider === "function") {
+        console.log("Initializing fncSlider...");
+        fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+    } else {
+        console.error("Error: fncSlider is not defined.");
+    }
 });
