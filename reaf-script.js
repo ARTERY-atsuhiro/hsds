@@ -24,7 +24,7 @@
 
     var autoSlidingActive = false;
     var autoSlidingTO;
-    var autoSlidingDelay = 5000; // default autosliding delay value
+    var autoSlidingDelay = 5000; 
     var autoSlidingBlocked = false;
 
     var $activeSlide;
@@ -157,14 +157,7 @@
   window.fncSlider = fncSlider;
 }());
 
-/* not part of the slider scripts */
 
-/* Slider initialization
-options:
-autoSliding - boolean
-autoSlidingDelay - delay in ms. If audoSliding is on and no value provided, default value is 5000
-blockASafterClick - boolean. If user clicked any sliding control, autosliding won't start again
-*/
 fncSlider(".example-slider", {autoSlidingDelay: 4000});
 
 var $demoCont = document.querySelector(".demo-cont");
