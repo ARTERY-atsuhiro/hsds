@@ -6,6 +6,7 @@
     return [].slice.call(elements);
   };
 
+  
   function _fncSliderInit($slider, options) {
     var prefix = ".fnc-";
 
@@ -174,4 +175,24 @@ document.querySelector(".demo-cont__credits-close").addEventListener("click", fu
 
 document.querySelector(".js-activate-global-blending").addEventListener("click", function() {
   document.querySelector(".example-slider").classList.toggle("m--global-blending-active");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var slider = document.querySelector(".example-slider");
+
+  if (!slider) {
+    console.error("Error: Slider element not found. Retrying...");
+    setTimeout(function () {
+      var retrySlider = document.querySelector(".example-slider");
+      if (retrySlider) {
+        console.log("Slider found, initializing...");
+        fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+      } else {
+        console.error("Final error: Slider element still not found.");
+      }
+    }, 1000);
+  } else {
+    console.log("Slider found, initializing...");
+    fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+  }
 });
