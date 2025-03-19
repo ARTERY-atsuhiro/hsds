@@ -178,21 +178,24 @@ document.querySelector(".js-activate-global-blending").addEventListener("click",
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var slider = document.querySelector(".example-slider");
+  console.log("DOMContentLoaded triggered, checking slider existence...");
 
-  if (!slider) {
-    console.error("Error: Slider element not found. Retrying...");
-    setTimeout(function () {
-      var retrySlider = document.querySelector(".example-slider");
-      if (retrySlider) {
-        console.log("Slider found, initializing...");
+  function initSlider() {
+    var slider = document.querySelector(".example-slider");
+
+    if (!slider) {
+      console.warn("Slider not found, retrying in 1000ms...");
+      setTimeout(initSlider, 1000);
+    } else {
+      console.log("Slider found, initializing...");
+      if (window.fncSlider) {
         fncSlider(".example-slider", { autoSlidingDelay: 4000 });
       } else {
-        console.error("Final error: Slider element still not found.");
+        console.error("Error: fncSlider is not defined. Retrying...");
+        setTimeout(initSlider, 500);
       }
-    }, 1000);
-  } else {
-    console.log("Slider found, initializing...");
-    fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+    }
   }
+
+  initSlider();
 });
